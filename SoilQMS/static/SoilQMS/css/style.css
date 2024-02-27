@@ -59,7 +59,7 @@ body {
 }
 
 .heading_container.heading_center {
-  
+
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -694,6 +694,26 @@ a:focus {
 
 .footer_section p a {
   color: inherit;
+}
+
+
+
+.list-declare{
+    color: hsl(208, 100%, 97%);
+
+    text-align: center;
+}
+.card-body{
+    /*color: black;*/
+    /*background-color: #042203;*/
+}
+.card-title{
+  text-align: center;
+    /*color: aliceblue;*/
+}
+.card-img-top{
+    height: 280px;
+    /*width: 160px;*/
 }
 /*# sourceMappingURL=style.css.map */
 /*# signin */
