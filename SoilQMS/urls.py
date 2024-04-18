@@ -27,5 +27,6 @@ urlpatterns = [
     path("signin", views.signin, name="signin"),
     path("signout", views.signout, name="signout"),
     path("crop_list", views.crop_list, name="crop_list"),
-    path("check", views.check, name="check")
+    path("check", views.check, name="check"),
+    path("predict", views.predict, name="predict")
 ]

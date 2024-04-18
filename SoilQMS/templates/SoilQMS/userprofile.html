@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soil Quality Monitoring</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .card {
+            margin: 20px;
+            border-radius: 10px;
+        }
+
+        .card-header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .card-text {
+            font-size: 16px;
+        }
+
+        .center {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <br><br><br><br><br>
+    <div style="text-align: center;display: flex;justify-content: center">
+      <div class="card shadow" style="width: 50rem;">
+        <div class="card-header">
+            
+          <label for="cropSelect">Select Crop</label>
+          <select class="form-control" id="cropSelect" name="crop">
+            <option value="TOMATO">TOMATO</option>
+            <option value="GREEN GRAM">GREEN GRAM</option>
+            <option value="BRINJAL">BRINJAL</option>
+            <option value="PEPPER">PEPPER</option>
+            <option value="POTATO">POTATO</option>
+            <option value="ONION">ONION</option>
+            <option value="SUGARCANE">SUGARCANE</option>
+            <option value="ARECANUT">ARECANUT</option>
+            <option value="COFFEE">COFFEE</option>
+            <option value="RICE">RICE</option>
+          </select>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title"></h5>
+            <br><br>
+              <div class="form-group">
+                <label for="phLevel">PH Level</label>
+                <input type="text" class="form-control" name="ph" id="phLevel" value="{{ph}}" placeholder="Enter PH Level">
+              </div>
+              <div class="form-group">
+                <label for="nightRegenLevel">Nitrogen Level</label>
+                <input type="text" class="form-control" name="n" id="nightRegenLevel" placeholder="Enter Nitrogen Level">
+              </div>
+              <div class="form-group">
+                <label for="posperes">Phosphorous</label>
+                <input type="text" class="form-control" name="p" id="posperes" placeholder="Enter Phosphorous">
+              </div>
+              <div class="form-group">
+                <label for="potassium">Potassium</label>
+                <input type="text" class="form-control" name="k" id="potassium" placeholder="Enter Potassium Level">
+              </div>
+              <div class="form-group">
+                <label for="temperature">Temperature</label>
+                <input type="text" class="form-control" id="temperature" value="{{temp}}" name="temp" placeholder="Enter Temperature">
+              </div>
+              <div class="form-group">
+                <label for="humidity">Humidity</label>
+                <input type="text" class="form-control" id="humidity" value="{{humidity}}" name="humidity" placeholder="Enter Humidity">
+              </div>
+              <div class="form-group">
+                <label for="moisture">Moisture</label>
+                <input type="text" class="form-control" id="moisture" name="moisture" value="{{moisture}}" placeholder="Enter Moisture Level">
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+          <br>
+          <div class="card shadow" style="width: 32rem;margin: auto">
+            <div class="card-body">
+              <h5 class="card-title">{{label}}</h5>
+              <p class="card-text">{{result}}</p>
+              <p class="card-text">{{result1}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br><br><br><br><br>
+</form>
+</body>
+</html>
