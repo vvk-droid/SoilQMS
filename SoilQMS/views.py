@@ -130,7 +130,7 @@ def predict(request):
         ph = float(request.POST['ph']) - 32
 
         temp = request.POST['temp']
-        moisture = request.POST['moisture'][:-3]
+        moisture = request.POST['moisture']
         humidity = request.POST['humidity']
         n = request.POST['n']
         p = request.POST['p']
@@ -146,44 +146,42 @@ def predict(request):
         ideal_p = crop.phosphorous
         ideal_k = crop.potassium
 
-        if int(moisture) > 400:
-            res = "Soil moisture is almost dry please fill the water"
-        elif int(moisture) < 200:
-            res = "Moisture level is good"
-        elif int(moisture) > 200 and int(moisture) < 300:
-            res = "Moisture level is average"
-        print('\n')
+        match crop.name:
+            case "TOMATO":
+                if int(moisture) > 400:
+                    res = "Soil moisture is almost dry please fill the water"
+                elif int(moisture) < 200:
+                    res = "Moisture level is good"
+                elif 200 < int(moisture) < 300:
+                    res = "Moisture level is average"
+                print('\n')
 
-        if 25 <= float(temp) <= 30:
+                if 25 <= float(temp) <= 30:
+                    res1 += "Temperature is within the ideal range. "
+                elif float(temp) < 25:
+                    res1 += "Temperature is too low. Consider providing additional warmth. "
+                else:
+                    res1 += "Temperature is too high. Consider providing shade or cooling measures. "
 
-            res1 += "Temperature is within the ideal range. "
-        elif float(temp) < 25:
+                if 70 <= float(humidity) <= 90:
+                    res1 += "Humidity is within the ideal range. "
+                elif float(humidity) < 70:
+                    res1 += "Humidity is too low. Consider increasing moisture levels. "
+                else:
+                    res1 += "Humidity is too high. Consider improving ventilation. "
 
-            res1 += "Temperature is too low. Consider providing additional warmth. "
-        else:
-
-            res1 += "Temperature is too high. Consider providing shade or cooling measures. "
-
-        if 70 <= float(humidity) <= 90:
-
-            res1 += "Humidity is within the ideal range. "
-        elif float(humidity) < 70:
-
-            res1 += "Humidity is too low. Consider increasing moisture levels. "
-        else:
-
-            res1 += "Humidity is too high. Consider improving ventilation. "
-
-        # pH conditions
-        if 5.5 <= float(ph) <= 7:
-
-            res1 += "pH is within the ideal range. "
-        elif float(ph) < 5.5:
-
-            res1 += "pH is too acidic. Consider adding lime to raise pH. "
-        else:
-
-            res1 += "pH is too alkaline. Consider adding sulfur to lower pH. "
+                # pH conditions
+                if 5.5 <= float(ph) <= 7:
+                    res1 += "pH is within the ideal range. "
+                elif float(ph) < 5.5:
+                    res1 += "pH is too acidic. Consider adding lime to raise pH. "
+                else:
+                    res1 += "pH is too alkaline. Consider adding sulfur to lower pH. "
+            # case "GREEN GRAM"
+            #     hre code for green gram
+            # case "BRINJAL":
+            #     here code for brinjal
+            # case ........ etc...
 
     return render(request, "SoilQMS/userprofile.html",
                   {"ph": float(data[2]) - 28, "temp": data[0], 'humidity': data[1], 'moisture': data[3], "result": res,
